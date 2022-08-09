@@ -1,0 +1,59 @@
+#include <Servo.h>
+Servo ioe1;
+Servo ioe2;
+Servo ioe3;
+
+void setup()
+{
+  ioe1.attach(10); //Base
+  ioe2.attach(9);  //Codo
+  ioe3.attach(8);  //Muñeca
+  
+ioe1.write(0);
+ioe2.write(0);
+ioe3.write(0);
+  
+}
+
+void loop()
+{
+  
+for (int x=0; x<=180; x++) {    
+ioe1.write(x);
+ delay(200);                 
+ }
+delay(1000);
+  
+for (int x=179; x>0; x--) {    
+ioe1.write(x);
+ delay(200);                 
+ }
+delay(1000);  
+  
+//*******************************  
+for (int x=0; x<=90; x++) {    
+ioe2.write(x);
+ delay(200);                 
+ }
+delay(1000);  
+  
+for (int x=89; x>0; x--) {    
+ioe2.write(x);
+ delay(200);                 
+ }
+delay(1000);  
+  
+//*******************************
+for (int x=0; x<=90; x++) {    
+ioe3.write(x);
+ delay(200);                 
+ }
+delay(1000);  
+  
+for (int x=89; x>0; x--) {    
+ioe3.write(x);
+ delay(200);                 
+ }
+delay(1000);   
+  
+}
