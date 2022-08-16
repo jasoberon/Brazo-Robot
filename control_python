@@ -1,0 +1,89 @@
+#install standard firmata on the Arduino Uno board
+# interface para mover servomotor
+
+from tkinter import *
+from time import sleep
+from pyfirmata import Arduino, util, SERVO
+import time
+
+#configuracion de placa arduino
+board = Arduino('COM3')
+sleep(5)
+board.digital[9].mode = SERVO
+board.digital[10].mode = SERVO
+board.digital[11].mode = SERVO
+
+#funcion para mover los servomotores
+def servo(posiciones):
+    #escritura de angulo en servomotor
+    board.digital[9].write(posiciones)
+
+def servo2(pocisiones):
+    #escritura de angulo en servomotor
+    board.digital[10].write(pocisiones)
+
+def servo3(pocisiones):
+    #escritura de angulo en servomotor
+    board.digital[11].write(pocisiones)
+    
+#encender LED
+def eiman_on():
+    board.digital[13].write(1)
+
+#apagar LED
+def eiman_off():
+    board.digital[13].write(0)
+
+#Secuencia 1
+def sec_1():
+    for x in range(90, 180, 1):
+        board.digital[9].write(x)
+        angulo.set(x)
+        sleep(0.01)
+    for x in range(180, 0, -1):
+        board.digital[9].write(x)
+        angulo.set(x)
+        sleep(0.01)
+    for x in range(0, 90, 1):
+        board.digital[9].write(x)
+        angulo.set(x)
+        sleep(0.01)
+        
+#Secuencia 2
+def sec_2():
+    board.digital[13].write(0)
+    
+root = Tk()
+root.title("Control de Brazo Robot")
+root.minsize(450,350)
+
+#Barras de angulos
+angulo = Scale(root, command=servo, from_=0, to=179, orient=HORIZONTAL, length=300, troughcolor='gray', width=30, cursor='dot', label='Angulo Base')
+angulo.set(90)
+angulo.grid(column=3,row=1)
+
+angulo = Scale(root, command=servo2, from_=0, to=179, orient=HORIZONTAL, length=300, troughcolor='gray', width=30, cursor='dot', label='Angulo Codo')
+angulo.set(90)
+angulo.grid(column=3,row=2)
+
+angulo = Scale(root, command=servo3, from_=0, to=179, orient=HORIZONTAL, length=300, troughcolor='gray', width=30, cursor='dot', label='Angulo Eiman')
+angulo.set(90)
+angulo.grid(column=3,row=3)
+
+#boton encendido
+Bon = Button(root, text="E-iman ON", command=eiman_on)
+Bon.grid(column=2, row=5)
+
+#boton apagado
+Boff = Button(root, text="E-iman OFF", command=eiman_off)
+Boff.grid(column=2, row=6)
+
+#boton secuencia1
+Boff = Button(root, text="Secuencia 1", command=sec_1)
+Boff.grid(column=3, row=5)
+
+#boton secuencia2
+Boff = Button(root, text="Secuencia 2", command=sec_2)
+Boff.grid(column=3, row=6)
+
+root.mainloop()
