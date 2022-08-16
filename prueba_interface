@@ -42,3 +42,4 @@ lbl3=Label(ventana, text="Servo 3")
 lbl3.place(x=170, y=140)
 
 ventana.mainloop()
+ 
