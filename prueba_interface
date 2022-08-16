@@ -1,0 +1,44 @@
+#https://recursospython.com/guias-y-manuales/caja-de-texto-entry-tkinter/
+#https://python-course.eu/tkinter/labels-in-tkinter.php
+#standard firmata
+
+from tkinter import *
+from time import sleep
+
+#crear objeto Tk()
+ventana=Tk()
+ventana.title("CONTROL DE BRAZO ROBOT")
+ventana.geometry('350x300')
+
+#Seleccion de puerto
+#Tk.Label(ventana, text="Puerto:").place(x=20, y=20)
+#.grid(row=0)
+#e1=tk.Entry(ventana)
+#e1.grid(row=0, column=1)
+#e1.place(x=65, y=20)
+
+#Barra servo1
+barra1=Scale(ventana, from_=0, to_=180, length=150, orient=HORIZONTAL)
+barra1.set(90)
+barra1.place(x=10, y=20)
+#barra1.pack()
+lbl1=Label(ventana, text="Servo 1")
+lbl1.place(x=170, y=40)
+
+#Barra servo2
+barra2=Scale(ventana, from_=0, to_=180, length=150, orient=HORIZONTAL)
+barra2.set(90)
+barra2.place(x=10, y=70)
+#barra1.pack()
+lbl2=Label(ventana, text="Servo 2")
+lbl2.place(x=170, y=90)
+
+#Barra servo3
+barra3=Scale(ventana, from_=0, to_=180, length=150, orient=HORIZONTAL)
+barra3.set(90)
+barra3.place(x=10, y=120)
+#barra1.pack()
+lbl3=Label(ventana, text="Servo 3")
+lbl3.place(x=170, y=140)
+
+ventana.mainloop()
